@@ -8,9 +8,11 @@
 
 import UIKit
 import CoreLocation
+import SpriteKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class WheelViewController: UIViewController, CLLocationManagerDelegate {
     
+    var wheelSprite: SKSpriteNode = SKSpriteNode(imageNamed: "imageedit_5_7054741177")
     var hasSearched = false
     var locationManager = CLLocationManager()
     var latitude: String = ""
@@ -19,17 +21,25 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var baseView: UIView!
     var myCustomView: UIView!
     var buttonArray: [UIButton] = []
-    @IBOutlet weak var chosen: UITextField!
+    var chosen: UITextView!
     var options = ["1", "2", "3", "4"]
     let rect1 = CGRect(x: 195, y: 75, width: 150, height: 100)
     var position = 0.0
     var option = ""
     var optionIndex = 0
     var hasFinishedSpinning = true
-    @IBOutlet weak var wheel: UIImageView!
-    @IBOutlet weak var spinButton: UIButton!
+    var wheel: UIImageView!
+    var spinButton: UIButton!
+    
+    var wedges = [UIImageView]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupWheel()
+        setupSpinBUtton()
+        setupChosen()
+        
         wheel.isHidden = true
         spinButton.isHidden = true
         
@@ -52,8 +62,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         //loadWheelButtons()
         //loadWheelOptions()
-        spinButton.center = self.view.center
-        spinButton.layer.cornerRadius = 35
+        spinButton.layer.cornerRadius = 50
         print(self.view.center.x.description + " " + self.view.center.y.description)
         let button = UIButton(frame: rect1)
         let x = self.view.center.x
@@ -63,15 +72,77 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         button.addTarget(self, action: #selector(showDetails), for: .touchUpInside)
         self.view.addSubview(button)
         
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: Selector(("rightSwiped")))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+    }
+    
+    func rightSwiped() {
+        print("Swiped Right!")
+    }
+    
+    func setupWheel() {
+        self.wheel = UIImageView()
+        self.wheel.image = UIImage(named: "wheel1")
+        let width = CGFloat(400)
+        let height = CGFloat(400)
+        let x = (self.view.frame.width - width) / 2
+        let y = (self.view.frame.height - height) / 2
+        self.wheel.frame = CGRect(x: x, y: y, width: width, height: height)
+        self.wheel.contentMode = .scaleAspectFit
+        self.view.addSubview(self.wheel)
+        
+        
+        var wedge = UIImage(named: "wedge2")
+        var positions: [[Int]] = [[0, 0], [200, 0], [200, 200], [0, 200]]
+        
+        for index in 0...3 {
+            var wedgeView = UIImageView()
+            let wedgeWidth = 200
+            let wedgeHeight = 200
+            let wedgeX = positions[index][0]
+            let wedgeY = positions[index][1]
+            wedgeView.frame = CGRect(x: wedgeX, y: wedgeY, width: wedgeWidth, height: wedgeHeight)
+            wedgeView.image = wedge
+            wedgeView.transform = wedgeView.transform.rotated(by: CGFloat(M_PI_2 * Double(index)))
+            self.wedges.append(wedgeView)
+            wedgeView.isHidden = true
+            self.wheel.addSubview(wedgeView)
+            
+        }
+        
+    }
+    
+    func setupSpinBUtton() {
+        self.spinButton = UIButton()
+        self.spinButton.setTitle("SPIN", for: UIControlState.normal)
+        let width = CGFloat(100)
+        let height = CGFloat(100)
+        let xPos = (self.view.frame.width - width) / 2
+        let yPos = (self.view.frame.height - height) / 2
+        self.spinButton.frame = CGRect(x: xPos, y: yPos, width: width, height: height)
+        self.spinButton.backgroundColor = UIColor.black
+        self.spinButton.addTarget(self, action: #selector(spin), for: .touchUpInside)
+        self.view.addSubview(self.spinButton)
+    }
+    
+    func setupChosen() {
+        self.chosen = UITextView()
+        let width = CGFloat(200)
+        let height = CGFloat(100)
+        let x = (self.view.frame.width - width) / 2
+        let y = (self.view.frame.height - height) / 2
+        self.chosen.frame = CGRect(x: x, y: y - 500, width: width, height: height)
+        self.chosen.textColor = UIColor.black
+        self.view.addSubview(self.chosen)
     }
     
     func loadWheelOptions() {
-        wheel.image = textToImage(drawText: options[0] as NSString, inImage: wheel.image!, atPoint: CGPoint(x: 195, y:75))
-        wheel.image = textToImage(drawText: options[2] as NSString, inImage: wheel.image!, atPoint: CGPoint(x: 195, y: 320))
-        wheel.image = textToImage(drawText: options[3] as NSString, inImage: wheel.image!, atPoint: CGPoint(x: 72.5, y: 197.5))
-        wheel.image = textToImage(drawText: options[1] as NSString, inImage: wheel.image!, atPoint: CGPoint(x: 317.5, y: 197.5))
-
-        wheel.center = self.view.center
+        wheel.image = textToImage(drawText: options[0] as NSString, inImage: wheel.image!, atPoint: CGPoint(x: 100, y:100))
+        wheel.image = textToImage(drawText: options[1] as NSString, inImage: wheel.image!, atPoint: CGPoint(x: 300, y: 100))
+        wheel.image = textToImage(drawText: options[2] as NSString, inImage: wheel.image!, atPoint: CGPoint(x: 300, y: 300))
+        wheel.image = textToImage(drawText: options[3] as NSString, inImage: wheel.image!, atPoint: CGPoint(x: 100, y: 300))
         
     }
     func loadWheelButtons() {
@@ -114,7 +185,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let xstart = self.view.center.x/4
         let ystart = self.view.center.y/2
         let width = self.view.frame.width - 2*xstart
-        let height = self.view.frame.height - 2*ystart
+        let height = self.view.frame.height - 2*ystart + 200
         myCustomView = UIView(frame: CGRect(x: xstart, y: ystart, width: width, height: height))
         myCustomView.backgroundColor = .blue
         self.view.addSubview(myCustomView)
@@ -182,7 +253,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func spin(_ sender: Any) {
+    func spin(_ sender: Any) {
         if (hasFinishedSpinning){
             hideButtons()
             hasFinishedSpinning = false
@@ -209,6 +280,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 self.optionIndex = self.chooseIndexBasedOnPosition(atPosition: self.position)
                 self.buttonArray[self.optionIndex].isHidden = false
                 print(self.optionIndex)
+                self.wedges[self.optionIndex].isHidden = false
             }
             
         }
@@ -220,13 +292,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     func chooseIndexBasedOnPosition(atPosition pos: Double) -> Int {
-        if (pos <= M_PI_4 || pos > 7*M_PI_4){
+        if (pos <  M_PI_2){
             return 0
         }
-        else if (pos <= 3*M_PI_4 && pos > M_PI_4) {
+        else if (pos <  M_PI_2 * 2) {
             return 3
         }
-        else if (pos <= 5*M_PI_4 && pos > 3*M_PI_4){
+        else if (pos < M_PI_2 * 3){
             return 2
         }
         else {
@@ -283,6 +355,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 self.loadWheelButtons()
                 self.wheel.isHidden = false
                 self.spinButton.isHidden = false
+                
             }
             }
         })

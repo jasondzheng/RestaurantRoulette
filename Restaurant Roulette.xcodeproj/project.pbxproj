@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6886A5541E919C3800A57868 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6886A5531E919C3800A57868 /* SwiftyJSON.swift */; };
+		6886A55C1E919CE700A57868 /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6886A55B1E919CE700A57868 /* WheelViewController.swift */; };
+		6886A55E1E919D5D00A57868 /* imageedit_5_7054741177.png in Resources */ = {isa = PBXBuildFile; fileRef = 6886A55D1E919D5D00A57868 /* imageedit_5_7054741177.png */; };
 		68C8157B1E9184860004BA59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C8157A1E9184860004BA59 /* AppDelegate.swift */; };
 		68C8157D1E9184860004BA59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C8157C1E9184860004BA59 /* ViewController.swift */; };
 		68C815801E9184860004BA59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8157E1E9184860004BA59 /* Main.storyboard */; };
@@ -14,6 +17,7 @@
 		68C815851E9184860004BA59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C815831E9184860004BA59 /* LaunchScreen.storyboard */; };
 		68C815901E9184860004BA59 /* Restaurant_RouletteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C8158F1E9184860004BA59 /* Restaurant_RouletteTests.swift */; };
 		68C8159B1E9184860004BA59 /* Restaurant_RouletteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C8159A1E9184860004BA59 /* Restaurant_RouletteUITests.swift */; };
+		68C815AB1E9187AC0004BA59 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C815AA1E9187AC0004BA59 /* MenuViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6886A5531E919C3800A57868 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		6886A55B1E919CE700A57868 /* WheelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
+		6886A55D1E919D5D00A57868 /* imageedit_5_7054741177.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageedit_5_7054741177.png; sourceTree = "<group>"; };
 		68C815771E9184860004BA59 /* Restaurant Roulette.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Restaurant Roulette.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C8157A1E9184860004BA59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68C8157C1E9184860004BA59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +54,7 @@
 		68C815961E9184860004BA59 /* Restaurant RouletteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Restaurant RouletteUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C8159A1E9184860004BA59 /* Restaurant_RouletteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant_RouletteUITests.swift; sourceTree = "<group>"; };
 		68C8159C1E9184860004BA59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		68C815AA1E9187AC0004BA59 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +105,16 @@
 		68C815791E9184860004BA59 /* Restaurant Roulette */ = {
 			isa = PBXGroup;
 			children = (
+				6886A55D1E919D5D00A57868 /* imageedit_5_7054741177.png */,
+				6886A55B1E919CE700A57868 /* WheelViewController.swift */,
 				68C8157A1E9184860004BA59 /* AppDelegate.swift */,
 				68C8157C1E9184860004BA59 /* ViewController.swift */,
 				68C8157E1E9184860004BA59 /* Main.storyboard */,
 				68C815811E9184860004BA59 /* Assets.xcassets */,
 				68C815831E9184860004BA59 /* LaunchScreen.storyboard */,
 				68C815861E9184860004BA59 /* Info.plist */,
+				68C815AA1E9187AC0004BA59 /* MenuViewController.swift */,
+				6886A5531E919C3800A57868 /* SwiftyJSON.swift */,
 			);
 			path = "Restaurant Roulette";
 			sourceTree = "<group>";
@@ -232,6 +244,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6886A55E1E919D5D00A57868 /* imageedit_5_7054741177.png in Resources */,
 				68C815851E9184860004BA59 /* LaunchScreen.storyboard in Resources */,
 				68C815821E9184860004BA59 /* Assets.xcassets in Resources */,
 				68C815801E9184860004BA59 /* Main.storyboard in Resources */,
@@ -260,7 +273,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				68C8157D1E9184860004BA59 /* ViewController.swift in Sources */,
+				68C815AB1E9187AC0004BA59 /* MenuViewController.swift in Sources */,
+				6886A55C1E919CE700A57868 /* WheelViewController.swift in Sources */,
 				68C8157B1E9184860004BA59 /* AppDelegate.swift in Sources */,
+				6886A5541E919C3800A57868 /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +519,7 @@
 				68C815A11E9184860004BA59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		68C815A21E9184860004BA59 /* Build configuration list for PBXNativeTarget "Restaurant RouletteTests" */ = {
 			isa = XCConfigurationList;
@@ -511,6 +528,7 @@
 				68C815A41E9184860004BA59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		68C815A51E9184860004BA59 /* Build configuration list for PBXNativeTarget "Restaurant RouletteUITests" */ = {
 			isa = XCConfigurationList;
@@ -519,6 +537,7 @@
 				68C815A71E9184860004BA59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
